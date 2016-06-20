@@ -6,7 +6,16 @@ const serve = require('koa-static');
 const route = require('koa-route');
 const koa = require('koa');
 const path = require('path');
+var mongoose = require('mongoose');
 const app = module.exports = koa();
+
+// Configure database
+mongoose.connect('mongodb://localhost:27017/notes');
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  // we're connected!
+});
 
 // Logger
 app.use(logger());

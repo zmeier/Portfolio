@@ -1,14 +1,15 @@
+// grab the user model
+var Note = require('../models/note');
+
 'use strict';
 const views = require('co-views');
 const parse = require('co-body');
-const messages = [
-  { id: 0,
-    message: 'Koa next generation web framework for node.js'
-  },
-  { id: 1,
-    message: 'Koa is a new web framework designed by the team behind Express'
-  }
-];
+var messages = [];
+
+Note.find(function (err, notes) {
+  if (err) return console.error(err);
+  messages = notes;
+});
 
 const render = views(__dirname + '/../views', {
   map: { html: 'swig' }
@@ -27,13 +28,27 @@ module.exports.fetch = function *fetch(id) {
   if (!message) {
     this.throw(404, 'message with id = ' + id + ' was not found');
   }
-  this.body = yield message;
+  this.body = message;
 };
 
 module.exports.create = function *create() {
   const message = yield parse(this);
-  const id = messages.push(message) - 1;
-  message.id = id;
+  messages.push(message) - 1;
+
+  // create a new note
+  var newNote = new Note({
+    title: "",
+    body: message.body,
+    active: true
+  });
+
+  // save the note
+  newNote.save(function(err, newNote) {
+    if (err) {
+      throw err;
+    }
+  });
+
   this.redirect('/');
 };
 
