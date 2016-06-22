@@ -33,7 +33,6 @@ module.exports.fetch = function *fetch(id) {
 
 module.exports.create = function *create() {
   const message = yield parse(this);
-  messages.push(message) - 1;
 
   // create a new note
   var newNote = new Note({
@@ -47,7 +46,28 @@ module.exports.create = function *create() {
     if (err) {
       throw err;
     }
+    messages.push(newNote) - 1;
   });
+  this.redirect('/');
+};
+
+module.exports.del = function *del(id) {
+  var i;
+  Note.findById(id, function (err, note) {
+    if (err) {
+      throw err;
+    }
+    note.active = false;
+    note.save();
+  });
+
+  for(i = 0; i < messages.length; i++) {
+    var note = messages[i];
+
+    if(note.id === id) {
+      note.active = false;
+    } 
+  }  
 
   this.redirect('/');
 };

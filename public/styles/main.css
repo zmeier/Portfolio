@@ -4,13 +4,15 @@ ul {
 	width: 700px;
 	font: 30px helvetica;
 	font-weight: 100;
+  padding-left: 0;
 }
 
 li {
   margin-bottom: 50px;
 }
 
-form {
+
+#message-form {
   width: 700px;
   margin: 0 auto;	
 }
@@ -18,8 +20,42 @@ form {
 textarea {
   border-style: none;
   width: 700px;
-  margin-left: 20px;
   height: 100px;
   font: 30px helvetica;
   font-weight: 100;
+  resize: none;
+}
+
+.left {
+  display: inline-block;
+  width: 100%;
+  vertical-align: middle;
+}
+
+.right {
+  display: none;
+  width: 0%;
+  vertical-align: middle;
+}
+
+.message:hover .right {
+  display: inline-block;
+  width: 5%;
+}
+
+.message:hover .left {
+  display: inline-block;
+  width: 90%;
+}
+
+.deletebutton {
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border: none;
+  font-size: 22pt;
+}
+
+.updatefooter {
+  font-size: 8pt;
 }

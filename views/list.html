@@ -5,7 +5,17 @@
 {% block content %}
   <ul class="messages">
     {% for message in messages %}
-      <li class="message">{{ message.body }}</li>
+      {% if message.active %}
+        <li class="message">
+          <div class="left">{{ message.body }}</div>
+          <div class="right">
+            <form action="/messages/delete/{{message.id}}" method="post">
+              <input type="submit" class="deletebutton" value="X" />
+            </form>
+          </div>  
+          <div class="updatefooter">last update: {{message.updated_at.toString()|date('h:ia m/d/y',300)}} </div>
+        </li>
+      {% endif %}
     {% endfor %}
   </ul>
   <form action="/messages" method="post" id="message-form">
