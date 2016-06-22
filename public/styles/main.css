@@ -1,25 +1,24 @@
 ul {
-	margin: 100px auto 0;
 	list-style: none;
-	width: 700px;
-	font: 30px helvetica;
-	font-weight: 100;
+	width: 100%;
   padding-left: 0;
 }
 
-li {
-  margin-bottom: 50px;
+.messages {
+  font-size: 18pt;
 }
 
+.message {
+  margin-bottom: 25px;
+}
 
 #message-form {
-  width: 700px;
-  margin: 0 auto;	
+  width: 100%;
 }
 
 textarea {
   border-style: none;
-  width: 700px;
+  width: 100%;
   height: 100px;
   font: 30px helvetica;
   font-weight: 100;
@@ -58,4 +57,9 @@ textarea {
 
 .updatefooter {
   font-size: 8pt;
+}
+
+.contentheader {
+  font-size: 14pt;
+  border-bottom: solid lightgray 1px;
 }

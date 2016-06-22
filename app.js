@@ -27,6 +27,7 @@ app.use(route.post('/messages', messages.create));
 app.use(route.get('/async', messages.delay));
 app.use(route.get('/promise', messages.promise));
 app.use(route.post('/messages/delete/:id', messages.del))
+app.use(route.get('/trash',messages.trash))
 
 // Serve static files
 app.use(serve(path.join(__dirname, 'public')));

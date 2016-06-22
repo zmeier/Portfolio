@@ -16,11 +16,15 @@ const render = views(__dirname + '/../views', {
 });
 
 module.exports.home = function *home(ctx) {
-  this.body = yield render('list', { 'messages': messages });
+  this.body = yield render('list', { 'messages': messages, 'showActive': true });
 };
 
 module.exports.list = function *list() {
-  this.body = yield messages;
+  this.body = yield render('list', { 'messages': messages, 'showActive': true, 'showDeleted': true });
+};
+
+module.exports.trash = function *trash() {
+  this.body = yield render('list', { 'messages': messages, 'showActive': false, 'showDeleted': true });
 };
 
 module.exports.fetch = function *fetch(id) {
@@ -52,7 +56,8 @@ module.exports.create = function *create() {
 };
 
 module.exports.del = function *del(id) {
-  var i;
+  var i,notes;
+
   Note.findById(id, function (err, note) {
     if (err) {
       throw err;
@@ -66,9 +71,10 @@ module.exports.del = function *del(id) {
 
     if(note.id === id) {
       note.active = false;
+      note.updated_at = new Date();
     } 
   }  
-
+  
   this.redirect('/');
 };
 

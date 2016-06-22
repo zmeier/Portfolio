@@ -1,0 +1,213 @@
+* {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  line-height: 1.5em;
+  font-size: 12pt;
+}
+
+header {
+  height: 40px;
+  background-color: lightcoral;
+  font-size: 14pt;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: inline-block;
+}
+
+.header-content {
+  padding: 5px;
+  display: inline-block;
+}
+
+.menu-overflow {
+  display: none;
+}
+
+.menu-overflow button {
+  margin: 0;
+  background-color: transparent;
+  border: none;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  transition: 0.3s;
+  font-size: 16pt;
+}
+
+.mainbody {
+  margin: 50px;
+}
+
+#content {
+  float: left;
+  width: 100%;
+}
+
+#contentcolumn {
+  margin: 0 0 0 230px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 15px;
+}
+
+.leftcolumn {
+  float: left;
+  width: 220px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-left: -100%;
+  font-size: 10pt;
+}
+
+#rightcolumn {
+  float: left;
+  width: 190px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-left: -200px;
+  /*Set left marginto -(RightColumnWidth)*/
+  font-size: 10pt;
+  display: none;
+}
+
+footer {
+  clear: left;
+  width: 100%;
+  text-align: center;
+  padding: 4px 0;
+  border-top: solid gray 1px;
+  color: dimgray;
+}
+
+.sidebar-section
+{
+  border-top: solid lightgray 1px;
+}
+
+.sidebar-section ul
+{
+  padding: 0;
+  list-style: none;
+}
+
+.sidebar-section a
+{
+  text-decoration: none;
+  display: block;
+  padding: none;
+  color: black;
+  font-size: 12pt;
+  padding-left: 15px;
+  width: 100%;
+}
+
+.sidebar-section li:hover {
+  background-color: lightcoral;
+  opacity: .3;
+}
+
+.selecteditem {
+  background-color: lightcoral;
+}
+
+.sidenav {
+  padding-left: 16px;
+  font-size: 14pt;
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  z-index: 99999;
+  top: 0; 
+  left: 0;
+  background-color: white;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  display: inline;
+  transition: 0.3s;
+}
+
+.sidenav a:hover, .offcanvas a:focus {
+  color: #f1f1f1;
+}
+
+.no-border
+{
+  border: none;
+}
+
+.closebtn {
+  font-size: 16pt;
+  position: absolute;
+  top: 0;
+  right: 25px;
+  margin-left: 50px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  color: black;
+}
+
+#shield
+{
+  display: none;
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5000;
+  opacity: .7;
+  background-color: gray;
+}
+
+button:focus {
+  outline: 0;
+}
+
+.hidden
+{
+  display: none;
+}
+
+/* ####### responsive layout CSS ####### */
+
+@media (max-width: 840px) {
+  /* 1st level responsive layout break point- drop right column down*/
+  .leftcolumn {
+    margin-left: -100%;
+  }
+  #rightcolumn {
+    float: none;
+    width: 100%;
+    margin-left: 0;
+    clear: both;
+  }
+  #contentcolumn {
+    margin-right: 0;
+    /*Set margin to LeftColumnWidth*/
+  }
+}
+
+@media (max-width: 680px) {
+  /* 2nd level responsive layout break point- drop left column down */
+  .leftcolumn {
+    display: none;
+  }
+  #contentcolumn {
+    margin-left: 0;
+  }
+  .menu-overflow {
+    display: inline-block;
+  }
+}

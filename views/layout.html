@@ -3,12 +3,39 @@
 <head>
 	<title>{% block title %}Messages{% endblock %}</title>
   <link rel="stylesheet" type="text/css" href="styles/main.css">
+  <link rel="stylesheet" type="text/css" href="styles/layout.css">
 </head>
 <body>
-  <section id="content">
-    {% block content %}
-      <p>Add content here</p>
-    {% endblock %}
-  </section>
+  <header>
+    <div class="menu-overflow">
+      <button style="cursor:pointer" onclick="openNav()">☰</button>
+    </div>
+    <div class="header-content">
+      Quick Notes
+    </div>
+  </header>
+
+  {% block content %}
+  {% endblock %}
+
+  <div id="shield"></div>
+
+  <script>
+    function openNav() {
+      document.getElementById("sidebar").classList.add("sidenav");
+      document.getElementById("sidebar").classList.remove("leftcolumn");
+      document.getElementById("closeSidebar").classList.remove("hidden");
+      // document.getElementById("mySidenav").style.width = "250px";
+      document.getElementById("shield").style.display = "block";
+    }
+    function closeNav() {
+      document.getElementById("sidebar").classList.remove("sidenav");
+      document.getElementById("sidebar").classList.add("leftcolumn");
+      document.getElementById("closeSidebar").classList.add("hidden");
+      // document.getElementById("mySidenav").style.width = "0";
+      document.getElementById("shield").style.display = "none";
+    }
+  </script>
 </body>
 </html>
+

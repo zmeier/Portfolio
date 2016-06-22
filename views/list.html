@@ -1,25 +1,58 @@
 {% extends 'layout.html' %}
 
-{% block title %}Messages{% endblock %}
+{% block title %}Notes{% endblock %}
 
 {% block content %}
-  <ul class="messages">
-    {% for message in messages %}
-      {% if message.active %}
-        <li class="message">
-          <div class="left">{{ message.body }}</div>
-          <div class="right">
-            <form action="/messages/delete/{{message.id}}" method="post">
-              <input type="submit" class="deletebutton" value="X" />
-            </form>
-          </div>  
-          <div class="updatefooter">last update: {{message.updated_at.toString()|date('h:ia m/d/y',300)}} </div>
-        </li>
+<div class="mainbody">
+  <div id="content">
+    <div id="contentcolumn">
+      {% if showActive && showDeleted %}
+      <div class="contentheader">All Notes</div>
+      {% elseif showActive %}
+      <div class="contentheader">Notes</div>
+      {% elseif showDeleted %}
+      <div class="contentheader">Deleted Notes</div>
       {% endif %}
-    {% endfor %}
-  </ul>
-  <form action="/messages" method="post" id="message-form">
-    <textarea placeholder="Insert a message" name="body"
-      onkeydown="if (event.keyCode == 13) document.getElementById('message-form').submit();"></textarea>
-  </form>
+
+
+      <ul class="messages">
+        {% for message in messages %} 
+          {% if (message.active && showActive) || (!message.active && showDeleted) %}
+          <li class="message">
+            <div class="left">{{ message.body }}</div>
+            <div class="right">
+              {% if message.active %}
+              <form action="/messages/delete/{{message.id}}" method="post">
+                <input type="submit" class="deletebutton" value="X" />
+              </form>
+              {% endif %}
+            </div>
+            <div class="updatefooter">last update: {{message.updated_at.toString()|date('h:ia m/d/y',300)}} </div>
+          </li>
+          {% endif %} 
+        {% endfor %}
+      </ul>
+      {% if showActive && !showDeleted %}
+      <form action="/messages" method="post" id="message-form">
+        <textarea placeholder="Write a note..." name="body" onkeydown="if (event.keyCode == 13) document.getElementById('message-form').submit();"></textarea>
+      </form>
+      {% endif %}
+    </div>
+  </div>
+
+  <div id="sidebar" class="leftcolumn">
+    <button id="closeSidebar" class="closebtn hidden" onclick="closeNav()">☰</button>
+    <div class="sidebar-section no-border">
+      <ul>
+        <li {% if showActive && !showDeleted %} class="selecteditem"{% endif %}><a href="/">New Note</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <ul>
+        <li {% if showActive && showDeleted %} class="selecteditem"{% endif %}><a href="/messages">All Notes</a></li>
+        <li {% if !showActive && showDeleted %} class="selecteditem"{% endif %}><a href="/trash">Deleted</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
 {% endblock %}
