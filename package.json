@@ -14,7 +14,8 @@
     "koa-compress": "^1.0.9",
     "co-views": "^2.1.0",
     "swig": "^1.4.2",
-    "co-body": "^4.2.0"
+    "co-body": "^4.2.0",
+    "mongoose": "^4.5.1"
   },
   "devDependencies": {
     "supertest": "^1.2.0",

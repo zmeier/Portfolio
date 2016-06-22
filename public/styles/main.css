@@ -1,25 +1,65 @@
 ul {
-	margin: 100px auto 0;
 	list-style: none;
-	width: 700px;
-	font: 30px helvetica;
-	font-weight: 100;
+	width: 100%;
+  padding-left: 0;
 }
 
-li {
-  margin-bottom: 50px;
+.messages {
+  font-size: 18pt;
 }
 
-form {
-  width: 700px;
-  margin: 0 auto;	
+.message {
+  margin-bottom: 25px;
+}
+
+#message-form {
+  width: 100%;
 }
 
 textarea {
   border-style: none;
-  width: 700px;
-  margin-left: 20px;
+  width: 100%;
   height: 100px;
   font: 30px helvetica;
   font-weight: 100;
+  resize: none;
+}
+
+.left {
+  display: inline-block;
+  width: 100%;
+  vertical-align: middle;
+}
+
+.right {
+  display: none;
+  width: 0%;
+  vertical-align: middle;
+}
+
+.message:hover .right {
+  display: inline-block;
+  width: 5%;
+}
+
+.message:hover .left {
+  display: inline-block;
+  width: 90%;
+}
+
+.deletebutton {
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border: none;
+  font-size: 22pt;
+}
+
+.updatefooter {
+  font-size: 8pt;
+}
+
+.contentheader {
+  font-size: 14pt;
+  border-bottom: solid lightgray 1px;
 }
